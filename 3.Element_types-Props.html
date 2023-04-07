@@ -102,37 +102,54 @@
         ]
 
         // CourseItem
-        function CourseItem ({
-            title,
-            image,
-            description,
-            studentsCount
-        }) {
+        function CourseItem (
+            // {
+            // title,
+            // image,
+            // description,
+            // studentsCount
+            // }
+
+            // Destructuring
+            { course, onClick } // Must use the same name in the API
+        ) {
             return (
                 <div>
-                    <h1>{title}</h1>
-                    <img src={image} alt={title} />
-                    <p>{description}</p>
-                    <p>{studentsCount}</p>    
+                    <h1 onClick={() => onClick(course)}>{course.title}</h1>
+                    <img src={course.image_url} alt={course.title} />
+                    <p>{course.description}</p>
+                    <p>{course.students_count}</p>    
                 </div>
             )
         }
 
-        const app = (
+        // Container
+        function App() {
+        
+            const handleClick = (course) => {
+                console.log(course.title) 
+            }
+
+        return (
             <div className="wrap">
                 {courses.map((course, index) => {
                     return <CourseItem 
                         key={index}
-                        title={course.title} 
-                        image={course.image_url}
-                        description={course.description}
-                        studentsCount={course.students_count}
+                        // title={course.title} 
+                        // image={course.image_url}
+                        // description={course.description}
+                        // studentsCount={course.students_count}
+
+                        // When there are a lot of props
+                        course={course}
+
+                        onClick={handleClick} //return onClick to CourseItem
                     />
                 })}
             </div>
-        )
+        )}
 
-        ReactDOM.render(app, document.getElementById('app'))
+        ReactDOM.render(<App />, document.getElementById('app'))
 
 
     </script>

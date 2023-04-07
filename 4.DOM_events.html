@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        
+    // const Form = {
+    //     Input() // có thể dùng làm function component
+    //     {
+    //         return <input />
+    //     },
+    //     Checkbox() {
+    //         return <input type="checkbox" />
+    //     }
+    // }
+
+    // function App() {
+
+    //     const type = "Checkbox";
+
+    //     const Component = Form[type]
+
+    //     return (
+    //         <div id="wrap">
+    //             <Component />    
+    //         </div>
+    //     )
+    // }
+
+
+    // Example
+        function Button({ title, href, onClick }) {
+            let Component = 'button'
+            const props = {}
+
+            if (href) {
+                Component = 'a'
+                props.href = href
+            }
+
+            if (onClick) {
+                props.onClick = onClick 
+            }
+
+            return (
+                <Component {...props}>{title}</Component>
+            )
+        }
+
+        function App( { title, content }) {
+
+            let firstAccess = true
+
+
+            return (
+                <div id="wrap">
+                {
+                    <Button 
+                        title="Click"
+                        href="https://facebook.com/phongnguyen1808"
+                        onClick={() => console.log(Math.random())}
+                    />
+
+                    // firstAccess && <h1>Xin chao</h1> 
+
+                    // title || content 
+                    // return title if title is assigned
+                    // return content if title is not assigned
+                }    
+                </div>
+            )
+        }
+
+    ReactDOM.render(<App title="title" content="content" />, document.getElementById('app'))
+
+    </script>
+</body>
+</html>
